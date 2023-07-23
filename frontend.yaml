@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      fe: web
+  template:
+    metadata:
+      labels:
+        fe: web
+    spec:
+      containers:
+      - name: frontend
+        image: react:latest
+        imagePullPolicy: Never
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fe-entrypoint
+  namespace: default
+spec:
+  type: NodePort
+  selector:
+    fe: web
+  ports:
+  - port: 3000
+    targetPort: 3000
+    nodePort: 30002
