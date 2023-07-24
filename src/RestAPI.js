@@ -1,7 +1,13 @@
 import axios from "axios";
+const {configs} = require('./frontend_config.js');
+
+const backendport = configs.backendport;
+const backendurl = configs.backendurl;
+
 
 //let server_url = "http://be-entrypoint.default.svc.cluster.local:7200/"
-let server_url = "http://192.168.2.170:7200/"
+let server_url = `http://${backendurl}:${backendport}/`;
+//let server_url = "http://"+configs.backendurl+":"+configs.backendport+"/"
 //let server_url = "http://172.17.0.1:7200/"
 //let server_url ="http://localhost:30001"
 
