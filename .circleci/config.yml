@@ -1,0 +1,39 @@
+version: 2.1
+orbs:
+  python: circleci/python@2
+jobs:
+  testfrontend:
+    docker:
+      image: circleci/node:16.13.0
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: npm install
+      - run:
+          name: Run tests
+          command: npm test
+
+  build_docker_image:
+    docker:
+      - image: circleci/node:12
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: false
+      - run:
+          name: Build Docker image
+          command: |
+            export TAG=0.2.<< pipeline.number >>
+            export IMAGE_NAME=tastyfrontend           
+            docker build -t $DOCKER_LOGIN/$IMAGE_NAME -t $DOCKER_LOGIN/$IMAGE_NAME:$TAG .
+            echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
+            docker push $DOCKER_LOGIN/$IMAGE_NAME
+
+workflows:
+  build-and-test:
+    jobs:
+      - testfrontend
+      - build_docker_image:
+          requires:
+            - testfrontend
