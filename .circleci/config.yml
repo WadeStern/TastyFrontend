@@ -1,6 +1,4 @@
 version: 2.1
-orbs:
-  python: circleci/python@2
 jobs:
   testfrontend:
     docker:
@@ -16,7 +14,7 @@ jobs:
 
   build_docker_image:
     docker:
-      - image: circleci/node:12
+      - image: circleci/node:16.13.0
     steps:
       - checkout
       - setup_remote_docker:
@@ -29,6 +27,9 @@ jobs:
             docker build -t $DOCKER_LOGIN/$IMAGE_NAME -t $DOCKER_LOGIN/$IMAGE_NAME:$TAG .
             echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
             docker push $DOCKER_LOGIN/$IMAGE_NAME
+    depends_on:
+      - testfrontend
+
 workflows:
   build-and-test:
     jobs:
