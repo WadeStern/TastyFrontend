@@ -22,14 +22,16 @@ jobs:
       - run:
           name: Build Docker image
           command: |
-            export TAG=0.2.<< pipeline.number >>
-            export IMAGE_NAME=tastyfrontend           
-            docker build -t $DOCKER_LOGIN/$IMAGE_NAME -t $DOCKER_LOGIN/$IMAGE_NAME:$TAG .
-            echo $DOCKER_PWD | docker login -u $DOCKER_LOGIN --password-stdin
-            docker push $DOCKER_LOGIN/$IMAGE_NAME
+            export TAG="0.2.${CIRCLE_BUILD_NUM}"
+            export IMAGE_NAME="tastyfrontend"
+            docker build -t "$DOCKER_LOGIN/$IMAGE_NAME" -t "$DOCKER_LOGIN/$IMAGE_NAME:$TAG" .
+            echo "$DOCKER_PWD" | docker login -u "$DOCKER_LOGIN" --password-stdin
+            docker push "$DOCKER_LOGIN/$IMAGE_NAME"
 
 workflows:
   build-and-test:
     jobs:
       - testfrontend
-      - build_docker_image
+      - build_docker_image:
+          requires:
+            - testfrontend
