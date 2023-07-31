@@ -2,6 +2,7 @@
   "name": "reactfirst",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://buypotato-backend:7200",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
@@ -18,6 +19,7 @@
     "buffer": "^6.0.3",
     "cors": "^2.8.5",
     "graceful-fs": "^4.2.11",
+    "http-proxy-middleware": "^2.0.6",
     "jwt-decode": "^3.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -53,6 +55,7 @@
   },
   "devDependencies": {
     "axios-mock-adapter": "^1.21.5",
+    "eslint": "^8.46.0",
     "jest": "^27.5.1",
     "mocha": "^10.2.0",
     "react-scripts": "^5.0.1",
