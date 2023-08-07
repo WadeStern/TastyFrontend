@@ -1,12 +1,10 @@
 import axios from "axios";
-const {configs} = require('./frontend_config.js');
 
-const backendport = configs.backendport;
-const backendurl = configs.backendurl;
+const backendPort = process.env.BACKEND_PORT || 7200;
+const backendUrl = process.env.BACKEND_URL || 'backend.staging.mstern.com';
 
-
+let server_url = `http://${backendUrl}:${backendPort}/`;
 //let server_url = "http://be-entrypoint.default.svc.cluster.local:7200/"
-let server_url = `http://${backendurl}:${backendport}/`;
 //let server_url = "http://"+configs.backendurl+":"+configs.backendport+"/"
 //let server_url = "http://172.17.0.1:7200/"
 //let server_url ="http://localhost:30001"

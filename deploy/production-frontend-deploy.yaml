@@ -7,7 +7,7 @@ spec:
     app: buypotato-frontend
   ports:
   - protocol: "TCP"
-    port: 3000
+    port: 80
     targetPort: 3000
   type: LoadBalancer
 
@@ -32,3 +32,8 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
+        env:
+        - name: BACKEND_PORT
+          value: "7200"
+        - name: BACKEND_URL
+          value: "backend.prod.mstern.com"
