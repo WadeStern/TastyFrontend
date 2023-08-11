@@ -1,6 +1,6 @@
 var configs = {
     //backendurl : 'buypotato-backend',
-    backendurl : 'backend.prod.mstern.com',
-    backendport : '7200'
+    backendPort : process.env.BACKEND_PORT || 7200,
+    backendUrl : process.env.BACKEND_URL || '192.168.2.170'
 };
 module.exports = {configs};
