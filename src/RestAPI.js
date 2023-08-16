@@ -1,9 +1,8 @@
 import axios from "axios";
 
-//const backendPort = process.env.BACKEND_PORT || 7200;
-//const backendUrl = process.env.BACKEND_URL || '192.168.2.170';
-const backendPort = "7200";
-const backendUrl = "backend.staging.wadestern.com";
+const backendPort = process.env.BACKEND_PORT;
+const backendUrl = process.env.BACKEND_URL;
+//const backendUrl = "backend.staging.wadestern.com";
 
 let server_url = `http://${backendUrl}:${backendPort}/`;
 //let server_url = "http://be-entrypoint.default.svc.cluster.local:7200/"
