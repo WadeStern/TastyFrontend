@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const backendPort = process.env.REACT_APP_BACKEND_PORT;
-const backendUrl = process.env.REACT_APP_BACKEND_URL;
+const backendPort = process.env.REACT_APP_BACKEND_PORT || 7200;
+const backendUrl = process.env.REACT_APP_BACKEND_URL || 'localhost';
 //const backendUrl = "backend.staging.wadestern.com";
 
 let server_url = `http://${backendUrl}:${backendPort}/`;
