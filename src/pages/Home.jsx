@@ -141,7 +141,7 @@ function Home() {
                     </Grid>
                 </div>
                 {
-                    suggestedRecipes.length>0 &&
+                    suggestedRecipes.length>0 && (
                     <div>
                     <Grid style={{ marginBottom: "20px", padding: "30px" }}>
                         <Typography gutterBottom variant="h3" align="left" sx={{ fontWeight: 'bold', color: '#7A562E' }} >
@@ -167,7 +167,7 @@ function Home() {
                 </div>
                     </Grid>
                 </div>
-                    
+                    ) 
                 }
                 
                 <div>
